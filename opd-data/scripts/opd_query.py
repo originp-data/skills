@@ -29,7 +29,9 @@
 环境变量:
     OPD_API_KEY    可选。API Key（形如 opd_xxx），以 X-API-Key 请求头发送。
                    未设置时自动读取配置文件 ~/.opd/api_key
-    OPD_BASE_URL   可选。API 地址，默认 https://api.originp.com
+    OPD_BASE_URL   可选。API 地址，默认 https://api.originp.com。
+                   出于安全仅接受 https 且主机名为 *.originp.com 的地址，
+                   防止 API Key 被发往未知服务器（调试内部环境用）
 
 配置文件:
     ~/.opd/api_key  保存一行 API Key。用 `--set-key` 写入，脚本自动读取，无需重启。
@@ -129,8 +131,9 @@ def main():
 
     api_key = resolve_api_key(args)
     if not api_key:
-        sys.exit("错误: 未配置 API Key。把密钥发给小龙虾（如「配置我的数据密钥：opd_xxx」），"
-                 "或运行 {} --set-key 配置。".format(os.path.basename(__file__)))
+        sys.exit("错误: 未配置 API Key。请在本地终端运行 `{} --set-key` 按提示粘贴配置"
+                 "（标准输入读取，不进入命令历史），或设置环境变量 OPD_API_KEY。"
+                 "请勿将 API Key 粘贴到对话消息中发送。".format(os.path.basename(__file__)))
 
     if args.check:
         print("API Key 已配置：{}（来源：{}）".format(mask_key(api_key), key_source(args)))
@@ -142,6 +145,11 @@ def main():
         sys.exit("错误: 缺少 --fields。用法: {} ENDPOINT --fields 字段,逗号分隔".format(os.path.basename(__file__)))
 
     base = os.environ.get("OPD_BASE_URL", DEFAULT_BASE_URL).rstrip("/")
+    parsed = urllib.parse.urlparse(base)
+    host = (parsed.hostname or "").lower()
+    if parsed.scheme != "https" or not (host == "originp.com" or host.endswith(".originp.com")):
+        sys.exit("错误: OPD_BASE_URL 仅接受 https 且主机名为 *.originp.com 的地址"
+                 "（防止 API Key 被发往未知服务器），当前值: {}".format(base))
     path = args.endpoint if args.endpoint.startswith("/") else "/api/v1/data/" + args.endpoint.lstrip("/")
 
     query = {"fields": args.fields}

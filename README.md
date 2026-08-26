@@ -28,13 +28,15 @@
 
 ## 配置 API Key（任选其一）
 
-**方式一：命令行保存（推荐）**
+**方式一：命令行交互保存（推荐）**
 
 ```bash
-python scripts/opd_query.py --set-key opd_你的Key
+python scripts/opd_query.py --set-key
 ```
 
-Key 保存到 `~/.opd/api_key`，立即生效，无需重启。若不想让 Key 出现在命令历史中，可运行 `python scripts/opd_query.py --set-key` 后按提示从标准输入粘贴。
+运行后按提示粘贴 Key（从标准输入读取，不进入命令历史），保存到 `~/.opd/api_key`，立即生效，无需重启。也可用 `--set-key opd_你的Key` 带值执行，但 Key 会留在命令历史中，不推荐。
+
+> **安全提示**：不要把 API Key 粘贴到与 AI 助手的对话中发送——对话记录可能被留存或转发。配置请始终在本地终端完成；若 Key 已在对话中暴露，建议在 OPD 平台重置。
 
 **方式二：环境变量**
 
@@ -115,6 +117,9 @@ python scripts/opd_query.py <接口短名> --fields <字段1,字段2,...> [--过
 
 - API Key 仅保存在 `~/.opd/api_key`（本地单用户受保护），不得写入其他文件
 - Key 不会出现在查询请求的日志/命令历史中（`--set-key` 支持标准输入读取）
+- 请勿把 API Key 粘贴到与 AI 助手的对话中发送；配置一律在本地终端完成
+- 网络请求仅发往 `https://api.originp.com`（`OPD_BASE_URL` 仅接受 `*.originp.com` 的 https 地址，脚本强制校验），Key 只随查询请求发送给 OPD 官方接口
+- 仅使用 Python 标准库，不安装任何依赖、不下载可执行文件
 
 ## 维护说明
 

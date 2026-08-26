@@ -1,21 +1,34 @@
 ---
 name: opd-data
 description: 查询 OPD 金融数据接口（api.originp.com）：A股上市公司基本信息、证券与行业分类、行情交易（日/周/月线、大宗交易、停复牌、异动）、财务报表与财务指标、融资融券与股权质押、IPO/增发/配股/分红、处罚诉讼担保等重大事项、股东/高管/股本等股权治理数据。当用户询问上市公司或股票相关数据时使用本技能。
-metadata: {"version": "0.1.0", "openclaw": {"requires": {"bins": ["python"]}}}
+version: 1.0.1
+metadata: {"openclaw": {"requires": {"bins": ["python"]}, "primaryEnv": "OPD_API_KEY"}}
 ---
 
 # OPD 金融数据查询
 
 通过 OPD 数据接口（`https://api.originp.com`）查询 A 股上市公司数据，共 62 个接口、6 大类。
 
+## 权限与数据流声明
+
+本技能的全部外部行为如下，超出此范围的行为均非本技能所为：
+
+- **网络**：仅访问 `https://api.originp.com`（`OPD_BASE_URL` 仅接受 `*.originp.com` 的 https 地址，脚本强制校验），发送查询参数与 `X-API-Key` 请求头；不向任何第三方地址发送数据。
+- **环境变量**：仅读取 `OPD_API_KEY`（密钥）与 `OPD_BASE_URL`（调试用接口地址）。
+- **文件**：仅读写 `~/.opd/api_key`（密钥保存位置，唯一落盘文件），不访问其他文件。
+- **依赖**：仅使用 Python 标准库，不执行 `pip install`，不下载任何可执行文件。
+- **密钥**：不在对话中索取、回显或转发密钥；配置一律由用户在本地终端完成。
+
 ## 环境准备（首次使用，一次性）
 
 1. **获取 API Key**：由 OPD 平台分配，形如 `opd_xxx`。注册/订阅等管理操作在 `https://data.originp.com/` 完成（该站提供页面服务）；`https://api.originp.com` 为接口调用地址，专供程序调用、不含页面。注意：除 Key 外还需**订阅所需接口**（试用或购买套餐），未订阅的接口调用会返回 BIZ_INTERFACE_FORBIDDEN。
-2. **配置 API Key（推荐，一句话完成）**：用户把密钥发给小龙虾（如「配置我的数据密钥：opd_xxx」）后，执行：
+2. **配置 API Key（推荐：终端交互输入）**：指引用户在本地终端运行：
    ```bash
-   python scripts/opd_query.py --set-key opd_用户的Key
+   python scripts/opd_query.py --set-key
    ```
-   Key 会保存到 `~/.opd/api_key`，脚本自动读取，**无需重启**即可生效。若用户不愿在对话中发送密钥，可在终端自行运行 `python scripts/opd_query.py --set-key`，按提示粘贴 Key（从标准输入读取，不留在命令历史）。
+   按提示粘贴 Key（从标准输入读取，不进入命令历史，也不经过对话），保存到 `~/.opd/api_key`，脚本自动读取，**无需重启**即可生效。
+
+   > **安全提示**：不要请用户把 API Key 粘贴到对话消息中发送——对话记录可能被留存、转发或用于训练；也不要用 `--set-key <Key>` 带值形式执行（Key 会留在 shell 命令历史）。若用户已把密钥发进对话，提醒其尽快在 OPD 平台重置该 Key。
 3. **（可选，兼容旧方式）配置环境变量** `OPD_API_KEY`：
    - Windows（用户级，需在配置后**重启 OpenClaw Gateway** 才会对 Agent 生效）：
      ```powershell
@@ -56,13 +69,13 @@ python scripts/opd_query.py daily_quote_hist --fields trade_date,close --sec_cod
 5. **多值与区间**：`in` 操作符参数（如 `sec_code`）逗号分隔多值；`between` 操作符参数（如日期）逗号分隔两个边界。
 6. **限频**：每分钟 60 次，批量查询时控制节奏。
 7. **按需加载**：先在下方速查表确定接口名与额外必填参数，再查阅对应 references/ 文档获取过滤参数与字段可选值；不要一次读取全部参考文档。
-8. **Key 安全**：用户主动发送密钥时，可用 `--set-key` 将其保存到 `~/.opd/api_key`（**唯一允许的落盘位置**，本地单用户受保护）；不得写入其他文件、不得回显到对话输出。若用户不愿发送密钥，指引其终端运行 `python scripts/opd_query.py --set-key`（标准输入粘贴，不落命令历史）或改用环境变量方式自行配置。
+8. **Key 安全**：不在对话中索取、回显或转发用户密钥。配置一律指引用户在本地终端完成：`python scripts/opd_query.py --set-key`（标准输入粘贴，不落命令历史）或环境变量方式。Key 仅保存到 `~/.opd/api_key`（**唯一允许的落盘位置**），不得写入其他文件。若用户把密钥粘贴到了对话中，提醒其密钥已进入对话记录、存在泄露风险，建议在 OPD 平台重置后再以本地方式配置。
 
 ## 错误码与处置
 
 | 现象 | 原因 | 处置 |
 |---|---|---|
-| 脚本提示"未配置 API Key" | Key 未配置（环境变量与配置文件均缺失） | 按"环境准备"指引用户配置（推荐一句话配置，无需重启；环境变量方式 Windows 下需重启 Gateway） |
+| 脚本提示"未配置 API Key" | Key 未配置（环境变量与配置文件均缺失） | 按"环境准备"指引用户在本地终端配置（`--set-key` 交互输入，无需重启；环境变量方式 Windows 下需重启 Gateway） |
 | `code=20004`（message：API Key 无效） | Key 错误或已失效 | 指引用户检查/重新获取 API Key，再用 `--set-key` 更新或改环境变量 |
 | message 含 `BIZ_INTERFACE_FORBIDDEN` | 未订阅该接口 | 告知用户需在 OPD 平台订阅（试用或购买套餐）该接口后重试 |
 | message 含 `BIZ_PARAM_INVALID` | 参数错误 | 检查 `fields` 是否遗漏、过滤参数名与可选值是否正确（对照 references/ 文档） |
