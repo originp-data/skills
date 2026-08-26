@@ -61,8 +61,8 @@ def resolve_api_key(args):
         return env_key
     if os.path.exists(KEY_FILE):
         try:
-            with open(KEY_FILE, encoding="utf-8") as f:
-                return f.read().strip()
+            with open(KEY_FILE, encoding="utf-8-sig") as f:
+                return f.read().strip().lstrip("\ufeff")
         except OSError:
             pass
     return ""
@@ -101,10 +101,9 @@ def main():
 
     if args.set_key is not None:
         key = "" if args.set_key is True else args.set_key
-        if key:
-            key = key.strip()
-        else:
-            key = sys.stdin.readline().strip()
+        if not key:
+            key = sys.stdin.readline()
+        key = key.strip().lstrip("\ufeff")
         if not key:
             sys.exit("错误: API Key 不能为空。")
         try:
@@ -185,7 +184,7 @@ def main():
 
 
 if __name__ == "__main__":
-    for stream in (sys.stdout, sys.stderr):
+    for stream in (sys.stdin, sys.stdout, sys.stderr):
         if hasattr(stream, "reconfigure"):
             stream.reconfigure(encoding="utf-8")
     main()

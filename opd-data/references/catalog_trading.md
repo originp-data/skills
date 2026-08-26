@@ -8,7 +8,7 @@
 
 > 数据为深交所镜像数据，更新频率为实时更新，节假日除外
 > **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
-> **鉴权**：请求头 `X-API-Key: opd_xxx`（优先）或 `Authorization: Bearer <JWT>`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
 
 **过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
 
@@ -55,7 +55,7 @@
 
 > 数据为深交所镜像数据，更新频率为实时更新，节假日除外
 > **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
-> **鉴权**：请求头 `X-API-Key: opd_xxx`（优先）或 `Authorization: Bearer <JWT>`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
 
 **过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
 
@@ -101,7 +101,7 @@
 
 > 数据为深交所镜像数据，更新频率为实时更新，节假日除外
 > **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
-> **鉴权**：请求头 `X-API-Key: opd_xxx`（优先）或 `Authorization: Bearer <JWT>`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
 
 **过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
 
@@ -132,7 +132,7 @@
 
 > 数据为深交所镜像数据，更新频率为实时更新，节假日除外
 > **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
-> **鉴权**：请求头 `X-API-Key: opd_xxx`（优先）或 `Authorization: Bearer <JWT>`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
 
 **过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
 
@@ -170,7 +170,7 @@
 
 > 数据为深交所镜像数据，更新频率为实时更新，节假日除外
 > **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
-> **鉴权**：请求头 `X-API-Key: opd_xxx`（优先）或 `Authorization: Bearer <JWT>`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
 
 **过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
 
@@ -204,7 +204,7 @@
 
 > 数据为深交所镜像数据，更新频率为实时更新，节假日除外
 > **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
-> **鉴权**：请求头 `X-API-Key: opd_xxx`（优先）或 `Authorization: Bearer <JWT>`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
 
 **过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
 
@@ -254,7 +254,7 @@
 
 > 数据为深交所镜像数据，更新频率为实时更新，节假日除外
 > **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
-> **鉴权**：请求头 `X-API-Key: opd_xxx`（优先）或 `Authorization: Bearer <JWT>`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
 
 **过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
 
@@ -304,7 +304,7 @@
 
 > 数据为深交所镜像数据，更新频率为实时更新，节假日除外
 > **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
-> **鉴权**：请求头 `X-API-Key: opd_xxx`（优先）或 `Authorization: Bearer <JWT>`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
 
 **过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
 
@@ -337,7 +337,7 @@
 
 > 数据为深交所镜像数据，更新频率为实时更新，节假日除外
 > **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
-> **鉴权**：请求头 `X-API-Key: opd_xxx`（优先）或 `Authorization: Bearer <JWT>`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
 
 **过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
 
@@ -366,7 +366,7 @@
 
 > 数据为深交所镜像数据，更新频率为实时更新，节假日除外
 > **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
-> **鉴权**：请求头 `X-API-Key: opd_xxx`（优先）或 `Authorization: Bearer <JWT>`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
 
 **过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
 
@@ -396,7 +396,7 @@
 
 > 数据为深交所镜像数据，更新频率为实时更新，节假日除外
 > **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
-> **鉴权**：请求头 `X-API-Key: opd_xxx`（优先）或 `Authorization: Bearer <JWT>`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
 
 **过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
 
