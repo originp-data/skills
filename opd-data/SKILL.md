@@ -1,7 +1,7 @@
 ---
 name: opd-data
 description: 查询 OPD 金融数据接口（api.originp.com）：A股上市公司基本信息、证券与行业分类、行情交易（日/周/月线、大宗交易、停复牌、异动）、财务报表与财务指标、融资融券与股权质押、IPO/增发/配股/分红、处罚诉讼担保等重大事项、股东/高管/股本等股权治理数据。当用户询问上市公司或股票相关数据时使用本技能。
-metadata: {"openclaw": {"requires": {"bins": ["python"]}}}
+metadata: {"version": "0.1.0", "openclaw": {"requires": {"bins": ["python"]}}}
 ---
 
 # OPD 金融数据查询
