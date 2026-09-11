@@ -1,5 +1,8 @@
 ---
 name: opd-data
+display_name: OPD 数据查询
+description_zh: 通过 OPD API 查询公开数据
+author: opd-team
 description: 查询 OPD 金融数据接口（api.originp.com）：A股上市公司基本信息、证券与行业分类、行情交易（日/周/月线、大宗交易、停复牌、异动）、财务报表与财务指标、融资融券与股权质押、IPO/增发/配股/分红、处罚诉讼担保等重大事项、股东/高管/股本等股权治理数据；产业链清单、图谱与产品关联公司；美/港/日/韩/德/英/法/澳等境外市场公司基本信息、证券信息、美股日行情与全球主要市场指数行情（日/周/月/年线）。当用户询问上市公司、股票或指数相关数据时使用本技能。
 version: 1.1.0
 metadata: {"openclaw": {"requires": {"bins": ["python"]}, "primaryEnv": "OPD_API_KEY"}}
@@ -17,10 +20,12 @@ metadata: {"openclaw": {"requires": {"bins": ["python"]}, "primaryEnv": "OPD_API
 - **环境变量**：仅读取 `OPD_API_KEY`（密钥）与 `OPD_BASE_URL`（调试用接口地址）。
 - **文件**：仅读写 `~/.opd/api_key`（密钥保存位置，唯一落盘文件），不访问其他文件。
 - **依赖**：仅使用 Python 标准库，不执行 `pip install`，不下载任何可执行文件。
-- **图表**：可视化需求委托宿主环境提供的图表技能处理（如 OpenClaw 生态的 `echarts-ai-skill` 或 WorkBuddy 生态的同类 ECharts 技能，执行其脚本生成 HTML，由用户本地浏览器打开查看）；本技能脚本不自行绘图或访问网络获取图表资源。
+- **图表**：可视化需求优先委托宿主环境**原生的可视化能力**处理；宿主提供图表技能时再委托其脚本生成 HTML（OpenClaw 生态为 `echarts-ai-skill`），由用户本地浏览器打开查看。本技能脚本不自行绘图或访问网络获取图表资源。
 - **密钥**：用户可直接在对话中提供 Key 由 Agent 代存（保存到 `~/.opd/api_key`），也可选择在本地终端自行配置；Agent 不得回显、复述或转发完整 Key，保存后仅以掩码形式提及。
 
 ## 环境准备（首次使用，一次性）
+
+本技能脚本需 **Python 3**（仅使用标准库，无需 `pip install`）。
 
 1. **获取 API Key**：由 OPD 平台分配，形如 `opd_xxx`。注册/订阅等管理操作在 `https://data.originp.com/` 完成（该站提供页面服务）；`https://api.originp.com` 为接口调用地址，专供程序调用、不含页面。注意：除 Key 外还需**订阅所需接口**（试用或购买套餐），未订阅的接口调用会返回 BIZ_INTERFACE_FORBIDDEN。
 2. **配置 API Key（推荐：Agent 代存）**：用户可直接在对话中提供 API Key，Agent 立即执行以下命令保存：
@@ -284,12 +289,16 @@ python scripts/opd_query.py daily_quote_hist --fields trade_date,last_price --se
 
 ## 图表输出
 
-**可视化委托宿主环境的图表技能生成（OpenClaw 生态为 `echarts-ai-skill`，WorkBuddy 生态为同类 ECharts 技能，按对应技能文档调用），生成交互式 HTML。不要探测或使用 matplotlib、mplfinance、pyecharts 等 Python 绘图库**——本机不作为绘图路线，探测它们只会产生报错。也不要执行 `pip install` 安装绘图库。若环境中无任何图表技能，则以 Markdown 表格呈现查询结果。
+**优先使用宿主环境原生的可视化能力**（如宿主内置的图表 / 绘图工具）。宿主提供图表技能时，委托其生成交互式 HTML，本技能不自行绘图。**不要探测或使用 matplotlib、mplfinance、pyecharts 等 Python 绘图库**——本机不作为绘图路线，探测它们只会产生报错。也不要执行 `pip install` 安装绘图库。若宿主无任何可视化能力，则以 Markdown 表格呈现查询结果。
 
-用户需要可视化时，将查询结果交给图表技能渲染（以 `echarts-ai-skill` 为例，交互式 HTML，浏览器打开查看）：
+### OpenClaw：echarts-ai-skill（仅 OpenClaw）
+
+下列具体调用方式**仅适用于 OpenClaw 生态**（其 `echarts-ai-skill` 技能）。WorkBuddy 等其他宿主**没有此技能**，请改用宿主原生可视化能力或对应图表技能，不要套用下列命令。
+
+用户需要可视化时，将查询结果交给图表技能渲染（交互式 HTML，浏览器打开查看）：
 
 1. 用本技能查询数据后，将 `data` 数组整理为 `ChartRequest` JSON（`dataset` 即行数组，字段名对应接口返回字段）。
-2. 调用 echarts-ai-skill 的命令生成图表（工作目录为其技能目录）：
+2. 调用 `echarts-ai-skill` 的命令生成图表（工作目录为其技能目录）：
    ```powershell
    node dist\cli\generate-chart.js --input <request.json> --out <option.json>
    node dist\cli\render-chart.js --input <option.json> --format html --out <输出路径.html>

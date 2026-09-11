@@ -110,6 +110,8 @@ def main():
             os.makedirs(os.path.dirname(KEY_FILE), exist_ok=True)
             with open(KEY_FILE, "w", encoding="utf-8") as f:
                 f.write(key + "\n")
+            if os.name != "nt":
+                os.chmod(KEY_FILE, 0o600)
         except OSError as e:
             sys.exit("错误: 无法写入配置文件 {}: {}".format(KEY_FILE, e))
         print("已保存 API Key 到 {}".format(KEY_FILE))
