@@ -1,4 +1,4 @@
-# 基本信息 — 6 个接口
+# 基本信息 — 30 个接口
 
 > 本文件由 `tools/generate_catalog.py` 从 OpenAPI 规范自动生成，请勿手工编辑。
 
@@ -15,9 +15,9 @@
 | 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
 |---|---|---|---|---|
 | `sec_code` | 否 | 证券代码；操作符：in（逗号拆分多值（如 2024-01-01,2024-01-02）） | string | `000001` |
-| `market_code` | 否 | 市场编码 | string | 012001=上交所；012002=深交所主板；012015=深交所创业板；012029=上交所科创板；012046=北交所 |
+| `market_code` | 否 | 市场编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 012001 - 上交所；012002 - 深交所主板；012015 - 深交所创业板；012029 - 上交所科创板；012046 - 北交所 |
 | `est_date` | 否 | 成立日期；操作符：between（逗号分隔两个边界） | string/date |  |
-| `listing_status_code` | 否 | 上市状态编码 | string | 013001=正常上市；013004=ST；013005=*ST；013006=已发行未上市；013008=未过会；013009=发行失败；013011=暂缓发行 |
+| `listing_status_code` | 否 | 上市状态编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 013001 - 正常上市；013004 - ST；013005 - *ST；013006 - 已发行未上市；013008 - 未过会；013009 - 发行失败；013011 - 暂缓发行 |
 | `province` | 否 | 所属省份 | string | `广东` |
 | `city` | 否 | 所属城市 | string | `深圳市` |
 
@@ -97,7 +97,7 @@
 |---|---|---|---|---|
 | `sec_code` | 是 | 证券代码；操作符：in（逗号拆分多值（如 2024-01-01,2024-01-02）） | string | `000001` |
 | `change_date` | 否 | 变更日期；操作符：between（逗号分隔两个边界） | string/date |  |
-| `std_code` | 否 | 分类标准编码 | string | 008001=中国上市公司协会上市公司行业分类标准；008002=巨潮行业分类标准；008003=申银万国行业分类标准；008004=新财富行业分类标准；008008=全球行业分类标准（GICS）；008009=证监会行业分类标准（2001）；008013=巨潮行业分类标准(旧)；008014=中证行业分类标准；008016=恒生行业分类；008018=申银万国行业分类标准(旧)；008019=中证行业分类标准(旧)；008021=证监会行业分类标准（2012） |
+| `std_code` | 否 | 分类标准编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 008001 - 中国上市公司协会上市公司行业分类标准；008002 - 巨潮行业分类标准；008003 - 申银万国行业分类标准；008004 - 新财富行业分类标准；008008 - 全球行业分类标准（GICS）；008009 - 证监会行业分类标准（2001）；008013 - 巨潮行业分类标准(旧)；008014 - 中证行业分类标准；008016 - 恒生行业分类；008018 - 申银万国行业分类标准(旧)；008019 - 中证行业分类标准(旧)；008021 - 证监会行业分类标准（2012） |
 | `ind_gate` | 否 | 行业门类 | string | `信息技术` |
 
 **返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
@@ -130,9 +130,9 @@
 
 | 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
 |---|---|---|---|---|
-| `market_code` | 否 | 交易市场编码 | string | 012001=上交所；012002=深交所主板；012015=深交所创业板；012029=上交所科创板；012046=北交所 |
+| `market_code` | 否 | 交易市场编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 012001 - 上交所；012002 - 深交所主板；012015 - 深交所创业板；012029 - 上交所科创板；012046 - 北交所 |
 | `sec_code` | 否 | 证券代码；操作符：in（逗号拆分多值（如 2024-01-01,2024-01-02）） | string | `000001` |
-| `sec_category_code` | 否 | 证券类别编码 | string | 001001=A股；001002=B股；001013=CDR；002001=国债；002002=政策性金融债；002003=央行票据；002005=企业债；002006=可转债；002007=一般金融债；002008=资产支持证券；002009=买断式回购；002010=质押式回购；002011=次级债；002012=短期融资券；002013=国际机构债券；002015=可分离可转债；002018=公司债；002019=集合债券；002020=中期票据；002021=地方政府债；002022=集合票据；002025=非银行金融债；002027=政府支持机构债券；002028=私募债；002029=小微企业扶持债；002030=可交换私募债；002033=可交换债；002034=外国主权政府人民币债券；002035=超短期融资债券；002036=项目收益票据；002037=资产支持票据；003001=封闭式基金；003003=LOF；003004=ETF；003012=不动产基金 |
+| `sec_category_code` | 否 | 证券类别编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 001001 - A股；001002 - B股；001013 - CDR；002001 - 国债；002002 - 政策性金融债；002003 - 央行票据；002005 - 企业债；002006 - 可转债；002007 - 一般金融债；002008 - 资产支持证券；002009 - 买断式回购；002010 - 质押式回购；002011 - 次级债；002012 - 短期融资券；002013 - 国际机构债券；002015 - 可分离可转债；002018 - 公司债；002019 - 集合债券；002020 - 中期票据；002021 - 地方政府债；002022 - 集合票据；002025 - 非银行金融债；002027 - 政府支持机构债券；002028 - 私募债；002029 - 小微企业扶持债；002030 - 可交换私募债；002033 - 可交换债；002034 - 外国主权政府人民币债券；002035 - 超短期融资债券；002036 - 项目收益票据；002037 - 资产支持票据；003001 - 封闭式基金；003003 - LOF；003004 - ETF；003012 - 不动产基金 |
 | `list_date` | 否 | 上市日期；操作符：between（逗号分隔两个边界） | string/date |  |
 
 **返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
@@ -170,7 +170,7 @@
 
 | 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
 |---|---|---|---|---|
-| `std_code` | 否 | 分类标准编码 | string | 137001=市场分类；137002=中上协行业分类；137003=巨潮行业分类；137004=申银万国行业分类；137005=新财富行业分类；137006=地区省市分类；137007=指数成份股；137008=概念板块；137098=证监会行业分类（2001） |
+| `std_code` | 否 | 分类标准编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 137001 - 市场分类；137002 - 中上协行业分类；137003 - 巨潮行业分类；137004 - 申银万国行业分类；137005 - 新财富行业分类；137006 - 地区省市分类；137007 - 指数成份股；137008 - 概念板块；137098 - 证监会行业分类（2001） |
 | `sec_code` | 否 | 证券代码；操作符：in（逗号拆分多值（如 2024-01-01,2024-01-02）） | string | `000001.sz` |
 | `sector_l1_name` | 否 | 板块一类名称 | string | `深市A股` |
 | `sector_l2_name` | 否 | 板块二类名称 | string | `深市创业板` |
@@ -236,7 +236,7 @@
 | 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
 |---|---|---|---|---|
 | `change_date` | 否 | 变更日期；操作符：between（逗号分隔两个边界） | string/date-time |  |
-| `intermediary_type_code` | 否 | 中介机构类别编码 | string | 016001=境内会计师事务所；016002=境外会计师事务所；016003=律师事务所；016004=主办券商；016005=副主办券商 |
+| `intermediary_type_code` | 否 | 中介机构类别编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 016001 - 境内会计师事务所；016002 - 境外会计师事务所；016003 - 律师事务所；016004 - 主办券商；016005 - 副主办券商 |
 
 **返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
 
@@ -248,3 +248,941 @@
 | `intermediary_type` | string | 中介机构类别；默认返回 |
 | `intermediary_name` | string | 中介机构名称；默认返回 |
 | `remark` | string | 备注 |
+
+## us_company_info — 美国公司基本信息
+
+`GET /api/v1/data/us_company_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `company_name_origin` | 否 | 公司原始全称；操作符：like（模糊匹配） | string |  |
+| `company_name_en` | 否 | 公司英文全称；操作符：like（模糊匹配） | string |  |
+| `company_short_name` | 否 | 公司简称；操作符：like（模糊匹配） | string |  |
+| `company_short_name_zh` | 否 | 公司中文简称；操作符：like（模糊匹配） | string |  |
+| `gics_sector_code` | 否 | GICS一级行业编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 10 - 能源；15 - 原材料；20 - 工业；25 - 非日常生活消费品；30 - 日常消费品；35 - 医疗保健；40 - 金融；45 - 信息技术；50 - 通讯业务；55 - 公用事业；60 - 房地产 |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name_origin` | string | 公司原始全称；默认返回 |
+| `company_name_en` | string | 公司英文全称；默认返回 |
+| `company_short_name` | string | 公司简称；默认返回 |
+| `company_short_name_zh` | string | 公司中文简称；默认返回 |
+| `security_code` | string | 证券代码；默认返回 |
+| `original_industry_desc` | string | 原始行业描述；默认返回 |
+| `gics_sector_code` | string | GICS一级行业编码；默认返回 |
+| `gics_industry_group_code` | string | GICS二级行业编码；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `established_date` | string/date-time | 成立日期；默认返回 |
+| `cik` | string | 美国中央索引编码；默认返回 |
+| `isin` | string | 国际证券识别编码；默认返回 |
+| `status` | number | 上市状态，1=上市；默认返回 |
+| `website_url` | string | 公司网址；默认返回 |
+| `employee_number` | number | 员工数量；默认返回 |
+| `registered_address` | string | 注册地址；默认返回 |
+| `office_address` | string | 办公地址；默认返回 |
+| `business_license` | string | 营业执照；默认返回 |
+| `telephone_number` | string | 电话号码；默认返回 |
+| `email_address` | string | 邮箱地址；默认返回 |
+| `fax_number` | string | 传真号码；默认返回 |
+| `registered_capital` | string | 注册资本；默认返回 |
+| `accounting_firm` | string | 会计事务所；默认返回 |
+| `company_introduction` | string | 公司简介 |
+| `has_merger_acquisition` | number | 有无并购事项，0=无，1=有；默认返回 |
+| `is_cross_listed` | number | 是否跨交易所上市，0=否，1=是；默认返回 |
+| `gics_sector_name` | string | GICS一级行业名称；默认返回 |
+| `gics_industry_group_name` | string | GICS二级行业名称；默认返回 |
+
+## us_security_info — 美国证券基本信息
+
+`GET /api/v1/data/us_security_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `security_code` | 否 | 证券代码；操作符：in（逗号拆分多值（如 2024-01-01,2024-01-02）） | string |  |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name` | string | 公司名称；默认返回 |
+| `market_type` | string | 上市板块；默认返回 |
+| `security_code` | string | 证券代码；默认返回 |
+| `security_type` | string | 证券类型；默认返回 |
+| `equity_type` | string | 股票分类；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `exchange_market_code` | string | 交易所代码；默认返回 |
+| `ipo_date` | string/date-time | 上市日期；默认返回 |
+| `status` | string | 证券状态，1=上市；默认返回 |
+
+## hk_company_info — 中国香港公司基本信息
+
+`GET /api/v1/data/hk_company_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `company_name_origin` | 否 | 公司原始全称；操作符：like（模糊匹配） | string |  |
+| `company_name_en` | 否 | 公司英文全称；操作符：like（模糊匹配） | string |  |
+| `company_short_name` | 否 | 公司简称；操作符：like（模糊匹配） | string |  |
+| `company_short_name_zh` | 否 | 公司中文简称；操作符：like（模糊匹配） | string |  |
+| `gics_sector_code` | 否 | GICS一级行业编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 10 - 能源；15 - 原材料；20 - 工业；25 - 非日常生活消费品；30 - 日常消费品；35 - 医疗保健；40 - 金融；45 - 信息技术；50 - 通讯业务；55 - 公用事业；60 - 房地产 |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name_origin` | string | 公司原始全称；默认返回 |
+| `company_name_en` | string | 公司英文全称；默认返回 |
+| `company_short_name` | string | 公司简称；默认返回 |
+| `company_short_name_zh` | string | 公司中文简称；默认返回 |
+| `security_code` | string | 交易所上的公司码；默认返回 |
+| `original_industry_desc` | string | 原始行业描述；默认返回 |
+| `gics_sector_code` | string | GICS一级行业编码；默认返回 |
+| `gics_industry_group_code` | string | GICS二级行业编码；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `established_date` | string/date-time | 成立日期；默认返回 |
+| `isin` | string | 国际证券识别编码；默认返回 |
+| `status` | number | 上市状态；默认返回 |
+| `website_url` | string | 公司网址；默认返回 |
+| `employee_number` | number | 员工数量；默认返回 |
+| `registered_address` | string | 注册地址；默认返回 |
+| `office_address` | string | 办公地址；默认返回 |
+| `business_license` | string | 营业执照；默认返回 |
+| `telephone_number` | string | 电话号码；默认返回 |
+| `email_address` | string | 邮箱地址；默认返回 |
+| `fax_number` | string | 传真号码；默认返回 |
+| `registered_capital` | string | 注册资本；默认返回 |
+| `accounting_firm` | string | 会计事务所；默认返回 |
+| `company_introduction` | string | 公司简介 |
+| `has_merger_acquisition` | number | 有无并购事项；默认返回 |
+| `is_cross_listed` | number | 是否跨交易所上市；默认返回 |
+| `gics_sector_name` | string | GICS一级行业名称；默认返回 |
+| `gics_industry_group_name` | string | GICS二级行业名称；默认返回 |
+
+## hk_security_info — 中国香港证券基本信息
+
+`GET /api/v1/data/hk_security_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `security_code` | 否 | 证券代码；操作符：in（逗号拆分多值（如 2024-01-01,2024-01-02）） | string |  |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name` | string | 公司名称；默认返回 |
+| `market_type` | string | 上市板块；默认返回 |
+| `security_code` | string | 证券代码；默认返回 |
+| `security_type` | string | 证券类型；默认返回 |
+| `equity_type` | string | 股票分类；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `exchange_market_code` | string | 交易所代码；默认返回 |
+| `ipo_date` | string/date-time | 上市日期；默认返回 |
+| `status` | string | 证券状态，1=上市；默认返回 |
+
+## jp_company_info — 日本公司基本信息
+
+`GET /api/v1/data/jp_company_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `company_name_origin` | 否 | 公司原始全称；操作符：like（模糊匹配） | string |  |
+| `company_name_en` | 否 | 公司英文全称；操作符：like（模糊匹配） | string |  |
+| `company_short_name` | 否 | 公司简称；操作符：like（模糊匹配） | string |  |
+| `company_short_name_zh` | 否 | 公司中文简称；操作符：like（模糊匹配） | string |  |
+| `gics_sector_code` | 否 | GICS一级行业编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 10 - 能源；15 - 原材料；20 - 工业；25 - 非日常生活消费品；30 - 日常消费品；35 - 医疗保健；40 - 金融；45 - 信息技术；50 - 通讯业务；55 - 公用事业；60 - 房地产 |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name_origin` | string | 公司原始全称；默认返回 |
+| `company_name_en` | string | 公司英文全称；默认返回 |
+| `company_short_name` | string | 公司简称；默认返回 |
+| `company_short_name_zh` | string | 公司中文简称；默认返回 |
+| `security_code` | string | 交易所上的公司码；默认返回 |
+| `original_industry_desc` | string | 原始行业描述；默认返回 |
+| `gics_sector_code` | string | GICS一级行业编码；默认返回 |
+| `gics_industry_group_code` | string | GICS二级行业编码；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `established_date` | string/date-time | 成立日期；默认返回 |
+| `isin` | string | 国际证券识别编码；默认返回 |
+| `edinet_code` | string | 电子披露系统编码；默认返回 |
+| `status` | number | 上市状态；默认返回 |
+| `website_url` | string | 公司网址；默认返回 |
+| `employee_number` | number | 员工数量；默认返回 |
+| `registered_address` | string | 注册地址；默认返回 |
+| `office_address` | string | 办公地址；默认返回 |
+| `business_license` | string | 营业执照；默认返回 |
+| `telephone_number` | string | 电话号码；默认返回 |
+| `email_address` | string | 邮箱地址；默认返回 |
+| `fax_number` | string | 传真号码；默认返回 |
+| `registered_capital` | string | 注册资本；默认返回 |
+| `accounting_firm` | string | 会计事务所；默认返回 |
+| `company_introduction` | string | 公司简介 |
+| `has_merger_acquisition` | number | 有无并购事项；默认返回 |
+| `is_cross_listed` | number | 是否跨交易所上市；默认返回 |
+| `gics_sector_name` | string | GICS一级行业名称；默认返回 |
+| `gics_industry_group_name` | string | GICS二级行业名称；默认返回 |
+
+## jp_security_info — 日本证券基本信息
+
+`GET /api/v1/data/jp_security_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `security_code` | 否 | 证券代码；操作符：in（逗号拆分多值（如 2024-01-01,2024-01-02）） | string |  |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name` | string | 公司名称；默认返回 |
+| `market_type` | string | 上市板块；默认返回 |
+| `security_code` | string | 证券代码；默认返回 |
+| `security_type` | string | 证券类型；默认返回 |
+| `equity_type` | string | 股票分类；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `exchange_market_code` | string | 交易所代码；默认返回 |
+| `ipo_date` | string/date-time | 上市日期；默认返回 |
+| `status` | string | 证券状态，1=上市；默认返回 |
+
+## tw_company_info — 中国台湾公司基本信息
+
+`GET /api/v1/data/tw_company_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `company_name_origin` | 否 | 公司原始全称；操作符：like（模糊匹配） | string |  |
+| `company_name_en` | 否 | 公司英文全称；操作符：like（模糊匹配） | string |  |
+| `company_short_name` | 否 | 公司简称；操作符：like（模糊匹配） | string |  |
+| `company_short_name_zh` | 否 | 公司中文简称；操作符：like（模糊匹配） | string |  |
+| `gics_sector_code` | 否 | GICS一级行业编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 10 - 能源；15 - 原材料；20 - 工业；25 - 非日常生活消费品；30 - 日常消费品；35 - 医疗保健；40 - 金融；45 - 信息技术；50 - 通讯业务；55 - 公用事业；60 - 房地产 |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name_origin` | string | 公司原始全称；默认返回 |
+| `company_name_en` | string | 公司英文全称；默认返回 |
+| `company_short_name` | string | 公司简称；默认返回 |
+| `company_short_name_zh` | string | 公司中文简称；默认返回 |
+| `security_code` | string | 交易所上的公司码；默认返回 |
+| `original_industry_desc` | string | 原始行业描述；默认返回 |
+| `gics_sector_code` | string | GICS一级行业编码；默认返回 |
+| `gics_industry_group_code` | string | GICS二级行业编码；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `established_date` | string/date-time | 成立日期；默认返回 |
+| `isin` | string | 国际证券识别编码；默认返回 |
+| `status` | number | 上市状态；默认返回 |
+| `website_url` | string | 公司网址；默认返回 |
+| `employee_number` | number | 员工数量；默认返回 |
+| `registered_address` | string | 注册地址；默认返回 |
+| `office_address` | string | 办公地址；默认返回 |
+| `business_license` | string | 营业执照；默认返回 |
+| `telephone_number` | string | 电话号码；默认返回 |
+| `email_address` | string | 邮箱地址；默认返回 |
+| `fax_number` | string | 传真号码；默认返回 |
+| `registered_capital` | string | 注册资本；默认返回 |
+| `accounting_firm` | string | 会计事务所；默认返回 |
+| `company_introduction` | string | 公司简介 |
+| `has_merger_acquisition` | number | 有无并购事项；默认返回 |
+| `is_cross_listed` | number | 是否跨交易所上市；默认返回 |
+| `gics_sector_name` | string | GICS一级行业名称；默认返回 |
+| `gics_industry_group_name` | string | GICS二级行业名称；默认返回 |
+
+## tw_security_info — 中国台湾证券基本信息
+
+`GET /api/v1/data/tw_security_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `security_code` | 否 | 证券代码；操作符：in（逗号拆分多值（如 2024-01-01,2024-01-02）） | string |  |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name` | string | 公司名称；默认返回 |
+| `market_type` | string | 上市板块；默认返回 |
+| `security_code` | string | 证券代码；默认返回 |
+| `security_type` | string | 证券类型；默认返回 |
+| `equity_type` | string | 股票分类；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `exchange_market_code` | string | 交易所代码；默认返回 |
+| `ipo_date` | string/date-time | 上市日期；默认返回 |
+| `status` | string | 证券状态，1=上市；默认返回 |
+
+## kr_company_info — 韩国公司基本信息
+
+`GET /api/v1/data/kr_company_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `company_name_origin` | 否 | 公司原始全称；操作符：like（模糊匹配） | string |  |
+| `company_name_en` | 否 | 公司英文全称；操作符：like（模糊匹配） | string |  |
+| `company_short_name` | 否 | 公司简称；操作符：like（模糊匹配） | string |  |
+| `company_short_name_zh` | 否 | 公司中文简称；操作符：like（模糊匹配） | string |  |
+| `gics_sector_code` | 否 | GICS一级行业编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 10 - 能源；15 - 原材料；20 - 工业；25 - 非日常生活消费品；30 - 日常消费品；35 - 医疗保健；40 - 金融；45 - 信息技术；50 - 通讯业务；55 - 公用事业；60 - 房地产 |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name_origin` | string | 公司原始全称；默认返回 |
+| `company_name_en` | string | 公司英文全称；默认返回 |
+| `company_short_name` | string | 公司简称；默认返回 |
+| `company_short_name_zh` | string | 公司中文简称；默认返回 |
+| `security_code` | string | 交易所上的公司码；默认返回 |
+| `original_industry_desc` | string | 原始行业描述；默认返回 |
+| `gics_sector_code` | string | GICS一级行业编码；默认返回 |
+| `gics_industry_group_code` | string | GICS二级行业编码；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `established_date` | string/date-time | 成立日期；默认返回 |
+| `isin` | string | 国际证券识别编码；默认返回 |
+| `status` | number | 上市状态；默认返回 |
+| `website_url` | string | 公司网址；默认返回 |
+| `employee_number` | number | 员工数量；默认返回 |
+| `registered_address` | string | 注册地址；默认返回 |
+| `office_address` | string | 办公地址；默认返回 |
+| `business_license` | string | 营业执照；默认返回 |
+| `telephone_number` | string | 电话号码；默认返回 |
+| `email_address` | string | 邮箱地址；默认返回 |
+| `fax_number` | string | 传真号码；默认返回 |
+| `registered_capital` | string | 注册资本；默认返回 |
+| `accounting_firm` | string | 会计事务所；默认返回 |
+| `company_introduction` | string | 公司简介 |
+| `has_merger_acquisition` | number | 有无并购事项；默认返回 |
+| `is_cross_listed` | number | 是否跨交易所上市；默认返回 |
+| `gics_sector_name` | string | GICS一级行业名称；默认返回 |
+| `gics_industry_group_name` | string | GICS二级行业名称；默认返回 |
+
+## kr_security_info — 韩国证券基本信息
+
+`GET /api/v1/data/kr_security_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `security_code` | 否 | 证券代码；操作符：in（逗号拆分多值（如 2024-01-01,2024-01-02）） | string |  |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name` | string | 公司名称；默认返回 |
+| `market_type` | string | 上市板块；默认返回 |
+| `security_code` | string | 证券代码；默认返回 |
+| `security_type` | string | 证券类型；默认返回 |
+| `equity_type` | string | 股票分类；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `exchange_market_code` | string | 交易所代码；默认返回 |
+| `ipo_date` | string/date-time | 上市日期；默认返回 |
+| `status` | string | 证券状态，1=上市；默认返回 |
+
+## de_company_info — 德国公司基本信息
+
+`GET /api/v1/data/de_company_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `company_name_origin` | 否 | 公司原始全称；操作符：like（模糊匹配） | string |  |
+| `company_name_en` | 否 | 公司英文全称；操作符：like（模糊匹配） | string |  |
+| `company_short_name` | 否 | 公司简称；操作符：like（模糊匹配） | string |  |
+| `company_short_name_zh` | 否 | 公司中文简称；操作符：like（模糊匹配） | string |  |
+| `gics_sector_code` | 否 | GICS一级行业编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 10 - 能源；15 - 原材料；20 - 工业；25 - 非日常生活消费品；30 - 日常消费品；35 - 医疗保健；40 - 金融；45 - 信息技术；50 - 通讯业务；55 - 公用事业；60 - 房地产 |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name_origin` | string | 公司原始全称；默认返回 |
+| `company_name_en` | string | 公司英文全称；默认返回 |
+| `company_short_name` | string | 公司简称；默认返回 |
+| `company_short_name_zh` | string | 公司中文简称；默认返回 |
+| `security_code` | string | 交易所上的公司码；默认返回 |
+| `original_industry_desc` | string | 原始行业描述；默认返回 |
+| `gics_sector_code` | string | GICS一级行业编码；默认返回 |
+| `gics_industry_group_code` | string | GICS二级行业编码；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `established_date` | string/date-time | 成立日期；默认返回 |
+| `isin` | string | 国际证券识别编码；默认返回 |
+| `status` | number | 上市状态；默认返回 |
+| `website_url` | string | 公司网址；默认返回 |
+| `employee_number` | number | 员工数量；默认返回 |
+| `registered_address` | string | 注册地址；默认返回 |
+| `office_address` | string | 办公地址；默认返回 |
+| `business_license` | string | 营业执照；默认返回 |
+| `telephone_number` | string | 电话号码；默认返回 |
+| `email_address` | string | 邮箱地址；默认返回 |
+| `fax_number` | string | 传真号码；默认返回 |
+| `registered_capital` | string | 注册资本；默认返回 |
+| `accounting_firm` | string | 会计事务所；默认返回 |
+| `company_introduction` | string | 公司简介 |
+| `has_merger_acquisition` | number | 有无并购事项；默认返回 |
+| `is_cross_listed` | number | 是否跨交易所上市；默认返回 |
+| `gics_sector_name` | string | GICS一级行业名称；默认返回 |
+| `gics_industry_group_name` | string | GICS二级行业名称；默认返回 |
+
+## de_security_info — 德国证券基本信息
+
+`GET /api/v1/data/de_security_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `security_code` | 否 | 证券代码；操作符：in（逗号拆分多值（如 2024-01-01,2024-01-02）） | string |  |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name` | string | 公司名称；默认返回 |
+| `market_type` | string | 上市板块；默认返回 |
+| `security_code` | string | 证券代码；默认返回 |
+| `security_type` | string | 证券类型；默认返回 |
+| `equity_type` | string | 股票分类；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `exchange_market_code` | string | 交易所代码；默认返回 |
+| `ipo_date` | string/date-time | 上市日期；默认返回 |
+| `status` | string | 证券状态，1=上市；默认返回 |
+
+## gb_company_info — 英国公司基本信息
+
+`GET /api/v1/data/gb_company_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `company_name_origin` | 否 | 公司原始全称；操作符：like（模糊匹配） | string |  |
+| `company_name_en` | 否 | 公司英文全称；操作符：like（模糊匹配） | string |  |
+| `company_short_name` | 否 | 公司简称；操作符：like（模糊匹配） | string |  |
+| `company_short_name_zh` | 否 | 公司中文简称；操作符：like（模糊匹配） | string |  |
+| `gics_sector_code` | 否 | GICS一级行业编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 10 - 能源；15 - 原材料；20 - 工业；25 - 非日常生活消费品；30 - 日常消费品；35 - 医疗保健；40 - 金融；45 - 信息技术；50 - 通讯业务；55 - 公用事业；60 - 房地产 |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name_origin` | string | 公司原始全称；默认返回 |
+| `company_name_en` | string | 公司英文全称；默认返回 |
+| `company_short_name` | string | 公司简称；默认返回 |
+| `company_short_name_zh` | string | 公司中文简称；默认返回 |
+| `security_code` | string | 交易所上的公司码；默认返回 |
+| `original_industry_desc` | string | 原始行业描述；默认返回 |
+| `gics_sector_code` | string | GICS一级行业编码；默认返回 |
+| `gics_industry_group_code` | string | GICS二级行业编码；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `established_date` | string/date-time | 成立日期；默认返回 |
+| `isin` | string | 国际证券识别编码；默认返回 |
+| `status` | number | 上市状态；默认返回 |
+| `website_url` | string | 公司网址；默认返回 |
+| `employee_number` | number | 员工数量；默认返回 |
+| `registered_address` | string | 注册地址；默认返回 |
+| `office_address` | string | 办公地址；默认返回 |
+| `business_license` | string | 营业执照；默认返回 |
+| `telephone_number` | string | 电话号码；默认返回 |
+| `email_address` | string | 邮箱地址；默认返回 |
+| `fax_number` | string | 传真号码；默认返回 |
+| `registered_capital` | string | 注册资本；默认返回 |
+| `accounting_firm` | string | 会计事务所；默认返回 |
+| `company_introduction` | string | 公司简介 |
+| `has_merger_acquisition` | number | 有无并购事项；默认返回 |
+| `is_cross_listed` | number | 是否跨交易所上市；默认返回 |
+| `gics_sector_name` | string | GICS一级行业名称；默认返回 |
+| `gics_industry_group_name` | string | GICS二级行业名称；默认返回 |
+
+## gb_security_info — 英国证券基本信息
+
+`GET /api/v1/data/gb_security_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `security_code` | 否 | 证券代码；操作符：in（逗号拆分多值（如 2024-01-01,2024-01-02）） | string |  |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name` | string | 公司名称；默认返回 |
+| `market_type` | string | 上市板块；默认返回 |
+| `security_code` | string | 证券代码；默认返回 |
+| `security_type` | string | 证券类型；默认返回 |
+| `equity_type` | string | 股票分类；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `exchange_market_code` | string | 交易所代码；默认返回 |
+| `ipo_date` | string/date-time | 上市日期；默认返回 |
+| `status` | string | 证券状态，1=上市；默认返回 |
+
+## fr_company_info — 法国公司基本信息
+
+`GET /api/v1/data/fr_company_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `company_name_origin` | 否 | 公司原始全称；操作符：like（模糊匹配） | string |  |
+| `company_name_en` | 否 | 公司英文全称；操作符：like（模糊匹配） | string |  |
+| `company_short_name` | 否 | 公司简称；操作符：like（模糊匹配） | string |  |
+| `company_short_name_zh` | 否 | 公司中文简称；操作符：like（模糊匹配） | string |  |
+| `gics_sector_code` | 否 | GICS一级行业编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 10 - 能源；15 - 原材料；20 - 工业；25 - 非日常生活消费品；30 - 日常消费品；35 - 医疗保健；40 - 金融；45 - 信息技术；50 - 通讯业务；55 - 公用事业；60 - 房地产 |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name_origin` | string | 公司原始全称；默认返回 |
+| `company_name_en` | string | 公司英文全称；默认返回 |
+| `company_short_name` | string | 公司简称；默认返回 |
+| `company_short_name_zh` | string | 公司中文简称；默认返回 |
+| `security_code` | string | 交易所上的公司码；默认返回 |
+| `original_industry_desc` | string | 原始行业描述；默认返回 |
+| `gics_sector_code` | string | GICS一级行业编码；默认返回 |
+| `gics_industry_group_code` | string | GICS二级行业编码；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `established_date` | string/date-time | 成立日期；默认返回 |
+| `isin` | string | 国际证券识别编码；默认返回 |
+| `status` | number | 上市状态；默认返回 |
+| `website_url` | string | 公司网址；默认返回 |
+| `employee_number` | number | 员工数量；默认返回 |
+| `registered_address` | string | 注册地址；默认返回 |
+| `office_address` | string | 办公地址；默认返回 |
+| `business_license` | string | 营业执照；默认返回 |
+| `telephone_number` | string | 电话号码；默认返回 |
+| `email_address` | string | 邮箱地址；默认返回 |
+| `fax_number` | string | 传真号码；默认返回 |
+| `registered_capital` | string | 注册资本；默认返回 |
+| `accounting_firm` | string | 会计事务所；默认返回 |
+| `company_introduction` | string | 公司简介 |
+| `has_merger_acquisition` | number | 有无并购事项；默认返回 |
+| `is_cross_listed` | number | 是否跨交易所上市；默认返回 |
+| `gics_sector_name` | string | GICS一级行业名称；默认返回 |
+| `gics_industry_group_name` | string | GICS二级行业名称；默认返回 |
+
+## fr_security_info — 法国证券基本信息
+
+`GET /api/v1/data/fr_security_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `security_code` | 否 | 证券代码；操作符：in（逗号拆分多值（如 2024-01-01,2024-01-02）） | string |  |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name` | string | 公司名称；默认返回 |
+| `market_type` | string | 上市板块；默认返回 |
+| `security_code` | string | 证券代码；默认返回 |
+| `security_type` | string | 证券类型；默认返回 |
+| `equity_type` | string | 股票分类；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `exchange_market_code` | string | 交易所代码；默认返回 |
+| `ipo_date` | string/date-time | 上市日期；默认返回 |
+| `status` | string | 证券状态，1=上市；默认返回 |
+
+## au_company_info — 澳大利亚公司基本信息
+
+`GET /api/v1/data/au_company_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `company_name_origin` | 否 | 公司原始全称；操作符：like（模糊匹配） | string |  |
+| `company_name_en` | 否 | 公司英文全称；操作符：like（模糊匹配） | string |  |
+| `company_short_name` | 否 | 公司简称；操作符：like（模糊匹配） | string |  |
+| `company_short_name_zh` | 否 | 公司中文简称；操作符：like（模糊匹配） | string |  |
+| `gics_sector_code` | 否 | GICS一级行业编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 10 - 能源；15 - 原材料；20 - 工业；25 - 非日常生活消费品；30 - 日常消费品；35 - 医疗保健；40 - 金融；45 - 信息技术；50 - 通讯业务；55 - 公用事业；60 - 房地产 |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name_origin` | string | 公司原始全称；默认返回 |
+| `company_name_en` | string | 公司英文全称；默认返回 |
+| `company_short_name` | string | 公司简称；默认返回 |
+| `company_short_name_zh` | string | 公司中文简称；默认返回 |
+| `security_code` | string | 交易所上的公司码；默认返回 |
+| `original_industry_desc` | string | 原始行业描述；默认返回 |
+| `gics_sector_code` | string | GICS一级行业编码；默认返回 |
+| `gics_industry_group_code` | string | GICS二级行业编码；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `established_date` | string/date-time | 成立日期；默认返回 |
+| `isin` | string | 国际证券识别编码；默认返回 |
+| `status` | number | 上市状态；默认返回 |
+| `website_url` | string | 公司网址；默认返回 |
+| `employee_number` | number | 员工数量；默认返回 |
+| `registered_address` | string | 注册地址；默认返回 |
+| `office_address` | string | 办公地址；默认返回 |
+| `business_license` | string | 营业执照；默认返回 |
+| `telephone_number` | string | 电话号码；默认返回 |
+| `email_address` | string | 邮箱地址；默认返回 |
+| `fax_number` | string | 传真号码；默认返回 |
+| `registered_capital` | string | 注册资本；默认返回 |
+| `accounting_firm` | string | 会计事务所；默认返回 |
+| `company_introduction` | string | 公司简介 |
+| `has_merger_acquisition` | number | 有无并购事项；默认返回 |
+| `is_cross_listed` | number | 是否跨交易所上市；默认返回 |
+| `gics_sector_name` | string | GICS一级行业名称；默认返回 |
+| `gics_industry_group_name` | string | GICS二级行业名称；默认返回 |
+
+## au_security_info — 澳大利亚证券基本信息
+
+`GET /api/v1/data/au_security_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `security_code` | 否 | 证券代码；操作符：in（逗号拆分多值（如 2024-01-01,2024-01-02）） | string |  |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name` | string | 公司名称；默认返回 |
+| `market_type` | string | 上市板块；默认返回 |
+| `security_code` | string | 证券代码；默认返回 |
+| `security_type` | string | 证券类型；默认返回 |
+| `equity_type` | string | 股票分类；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `exchange_market_code` | string | 交易所代码；默认返回 |
+| `ipo_date` | string/date-time | 上市日期；默认返回 |
+| `status` | string | 证券状态，1=上市；默认返回 |
+
+## id_company_info — 印尼公司基本信息
+
+`GET /api/v1/data/id_company_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `company_name_origin` | 否 | 公司原始全称；操作符：like（模糊匹配） | string |  |
+| `company_name_en` | 否 | 公司英文全称；操作符：like（模糊匹配） | string |  |
+| `company_short_name` | 否 | 公司简称；操作符：like（模糊匹配） | string |  |
+| `company_short_name_zh` | 否 | 公司中文简称；操作符：like（模糊匹配） | string |  |
+| `gics_sector_code` | 否 | GICS一级行业编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 10 - 能源；15 - 原材料；20 - 工业；25 - 非日常生活消费品；30 - 日常消费品；35 - 医疗保健；40 - 金融；45 - 信息技术；50 - 通讯业务；55 - 公用事业；60 - 房地产 |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name_origin` | string | 公司原始全称；默认返回 |
+| `company_name_en` | string | 公司英文全称；默认返回 |
+| `company_short_name` | string | 公司简称；默认返回 |
+| `company_short_name_zh` | string | 公司中文简称；默认返回 |
+| `security_code` | string | 交易所上的公司码；默认返回 |
+| `original_industry_desc` | string | 原始行业描述；默认返回 |
+| `gics_sector_code` | string | GICS一级行业编码；默认返回 |
+| `gics_industry_group_code` | string | GICS二级行业编码；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `established_date` | string/date-time | 成立日期；默认返回 |
+| `isin` | string | 国际证券识别编码；默认返回 |
+| `status` | number | 上市状态；默认返回 |
+| `website_url` | string | 公司网址；默认返回 |
+| `employee_number` | number | 员工数量；默认返回 |
+| `registered_address` | string | 注册地址；默认返回 |
+| `office_address` | string | 办公地址；默认返回 |
+| `business_license` | string | 营业执照；默认返回 |
+| `telephone_number` | string | 电话号码；默认返回 |
+| `email_address` | string | 邮箱地址；默认返回 |
+| `fax_number` | string | 传真号码；默认返回 |
+| `registered_capital` | string | 注册资本；默认返回 |
+| `accounting_firm` | string | 会计事务所；默认返回 |
+| `company_introduction` | string | 公司简介 |
+| `has_merger_acquisition` | number | 有无并购事项；默认返回 |
+| `is_cross_listed` | number | 是否跨交易所上市；默认返回 |
+| `gics_sector_name` | string | GICS一级行业名称；默认返回 |
+| `gics_industry_group_name` | string | GICS二级行业名称；默认返回 |
+
+## id_security_info — 印尼证券基本信息
+
+`GET /api/v1/data/id_security_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `security_code` | 否 | 证券代码；操作符：in（逗号拆分多值（如 2024-01-01,2024-01-02）） | string |  |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name` | string | 公司名称；默认返回 |
+| `market_type` | string | 上市板块；默认返回 |
+| `security_code` | string | 证券代码；默认返回 |
+| `security_type` | string | 证券类型；默认返回 |
+| `equity_type` | string | 股票分类；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `exchange_market_code` | string | 交易所代码；默认返回 |
+| `ipo_date` | string/date-time | 上市日期；默认返回 |
+| `status` | string | 证券状态，1=上市；默认返回 |
+
+## th_company_info — 泰国公司基本信息
+
+`GET /api/v1/data/th_company_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `company_name_origin` | 否 | 公司原始全称；操作符：like（模糊匹配） | string |  |
+| `company_name_en` | 否 | 公司英文全称；操作符：like（模糊匹配） | string |  |
+| `company_short_name` | 否 | 公司简称；操作符：like（模糊匹配） | string |  |
+| `company_short_name_zh` | 否 | 公司中文简称；操作符：like（模糊匹配） | string |  |
+| `gics_sector_code` | 否 | GICS一级行业编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 10 - 能源；15 - 原材料；20 - 工业；25 - 非日常生活消费品；30 - 日常消费品；35 - 医疗保健；40 - 金融；45 - 信息技术；50 - 通讯业务；55 - 公用事业；60 - 房地产 |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name_origin` | string | 公司原始全称；默认返回 |
+| `company_name_en` | string | 公司英文全称；默认返回 |
+| `company_short_name` | string | 公司简称；默认返回 |
+| `company_short_name_zh` | string | 公司中文简称；默认返回 |
+| `security_code` | string | 交易所上的公司码；默认返回 |
+| `original_industry_desc` | string | 原始行业描述；默认返回 |
+| `gics_sector_code` | string | GICS一级行业编码；默认返回 |
+| `gics_industry_group_code` | string | GICS二级行业编码；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `established_date` | string/date-time | 成立日期；默认返回 |
+| `isin` | string | 国际证券识别编码；默认返回 |
+| `status` | number | 上市状态；默认返回 |
+| `website_url` | string | 公司网址；默认返回 |
+| `employee_number` | number | 员工数量；默认返回 |
+| `registered_address` | string | 注册地址；默认返回 |
+| `office_address` | string | 办公地址；默认返回 |
+| `business_license` | string | 营业执照；默认返回 |
+| `telephone_number` | string | 电话号码；默认返回 |
+| `email_address` | string | 邮箱地址；默认返回 |
+| `fax_number` | string | 传真号码；默认返回 |
+| `registered_capital` | string | 注册资本；默认返回 |
+| `accounting_firm` | string | 会计事务所；默认返回 |
+| `company_introduction` | string | 公司简介 |
+| `has_merger_acquisition` | number | 有无并购事项；默认返回 |
+| `is_cross_listed` | number | 是否跨交易所上市；默认返回 |
+| `gics_sector_name` | string | GICS一级行业名称；默认返回 |
+| `gics_industry_group_name` | string | GICS二级行业名称；默认返回 |
+
+## th_security_info — 泰国证券基本信息
+
+`GET /api/v1/data/th_security_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `security_code` | 否 | 证券代码；操作符：in（逗号拆分多值（如 2024-01-01,2024-01-02）） | string |  |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name` | string | 公司名称；默认返回 |
+| `market_type` | string | 上市板块；默认返回 |
+| `security_code` | string | 证券代码；默认返回 |
+| `security_type` | string | 证券类型；默认返回 |
+| `equity_type` | string | 股票分类；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `exchange_market_code` | string | 交易所代码；默认返回 |
+| `ipo_date` | string/date-time | 上市日期；默认返回 |
+| `status` | string | 证券状态，1=上市；默认返回 |
+
+## my_company_info — 马来西亚公司基本信息
+
+`GET /api/v1/data/my_company_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `company_name_origin` | 否 | 公司原始全称；操作符：like（模糊匹配） | string |  |
+| `company_name_en` | 否 | 公司英文全称；操作符：like（模糊匹配） | string |  |
+| `company_short_name` | 否 | 公司简称；操作符：like（模糊匹配） | string |  |
+| `company_short_name_zh` | 否 | 公司中文简称；操作符：like（模糊匹配） | string |  |
+| `gics_sector_code` | 否 | GICS一级行业编码；枚举值按「value - label」展示（value 为实际传参值，label 为含义），调用时仅传 value 部分 | string | 10 - 能源；15 - 原材料；20 - 工业；25 - 非日常生活消费品；30 - 日常消费品；35 - 医疗保健；40 - 金融；45 - 信息技术；50 - 通讯业务；55 - 公用事业；60 - 房地产 |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name_origin` | string | 公司原始全称；默认返回 |
+| `company_name_en` | string | 公司英文全称；默认返回 |
+| `company_short_name` | string | 公司简称；默认返回 |
+| `company_short_name_zh` | string | 公司中文简称；默认返回 |
+| `security_code` | string | 交易所上的公司码；默认返回 |
+| `original_industry_desc` | string | 原始行业描述；默认返回 |
+| `gics_sector_code` | string | GICS一级行业编码；默认返回 |
+| `gics_industry_group_code` | string | GICS二级行业编码；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `established_date` | string/date-time | 成立日期；默认返回 |
+| `isin` | string | 国际证券识别编码；默认返回 |
+| `status` | number | 上市状态；默认返回 |
+| `website_url` | string | 公司网址；默认返回 |
+| `employee_number` | number | 员工数量；默认返回 |
+| `registered_address` | string | 注册地址；默认返回 |
+| `office_address` | string | 办公地址；默认返回 |
+| `business_license` | string | 营业执照；默认返回 |
+| `telephone_number` | string | 电话号码；默认返回 |
+| `email_address` | string | 邮箱地址；默认返回 |
+| `fax_number` | string | 传真号码；默认返回 |
+| `registered_capital` | string | 注册资本；默认返回 |
+| `accounting_firm` | string | 会计事务所；默认返回 |
+| `company_introduction` | string | 公司简介 |
+| `has_merger_acquisition` | number | 有无并购事项；默认返回 |
+| `is_cross_listed` | number | 是否跨交易所上市；默认返回 |
+| `gics_sector_name` | string | GICS一级行业名称；默认返回 |
+| `gics_industry_group_name` | string | GICS二级行业名称；默认返回 |
+
+## my_security_info — 马来西亚证券基本信息
+
+`GET /api/v1/data/my_security_info`
+
+> **调用说明**：版本：1.0；调用限频：每分钟 60 次；单次最大记录数：1000
+> **鉴权**：请求头 `X-API-Key: opd_xxx`；需已订阅该接口，否则返回 BIZ_INTERFACE_FORBIDDEN。
+
+**过滤参数**（`fields` 必填、`limit`/`offset` 分页为统一参数，见 SKILL.md）
+
+| 参数 | 必填 | 说明 | 类型 | 示例 / 可选值 |
+|---|---|---|---|---|
+| `security_code` | 否 | 证券代码；操作符：in（逗号拆分多值（如 2024-01-01,2024-01-02）） | string |  |
+
+**返回字段**（`fields` 参数可选值；标注"默认返回"的字段在未指定时也会返回）
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `company_code` | string | 公司id；默认返回 |
+| `company_name` | string | 公司名称；默认返回 |
+| `market_type` | string | 上市板块；默认返回 |
+| `security_code` | string | 证券代码；默认返回 |
+| `security_type` | string | 证券类型；默认返回 |
+| `equity_type` | string | 股票分类；默认返回 |
+| `country_code_listed` | string | 上市国家（地区）代码；默认返回 |
+| `exchange_market_code` | string | 交易所代码；默认返回 |
+| `ipo_date` | string/date-time | 上市日期；默认返回 |
+| `status` | string | 证券状态，1=上市；默认返回 |

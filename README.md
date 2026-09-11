@@ -1,13 +1,13 @@
 # OPD 数据查询（opd-data）
 
-通过 OPD 数据接口（`https://api.originp.com`）查询 A 股上市公司数据，覆盖 **62 个接口、6 大数据域**：基本信息、交易信息、财务信息、融资分配、重大事项、股权与治理。
+通过 OPD 数据接口（`https://api.originp.com`）查询上市公司与全球市场数据，覆盖 **151 个接口、9 大数据域**：基本信息（A 股及境外主要市场）、交易信息、财务信息、融资分配、重大事项、股权与治理、产业链数据、股票行情（美股）、指数行情（全球主要市场）。
 
 本技能负责**获取数据**，返回结构化 JSON，可与 `echarts-ai-skill` 等图表技能配合完成可视化。
 
 ## 特性
 
 - 零依赖：仅使用 Python 标准库（`urllib`），无需 `pip install`
-- 通用查询：一个脚本覆盖全部 62 个接口，按需传参
+- 通用查询：一个脚本覆盖全部 151 个接口，按需传参
 - 字段可选：返回字段按接口文档自由指定，控制数据量
 - 灵活过滤：支持多值（`in`）、区间（`between`）等过滤参数
 - 分页拉取：`limit`/`offset` 控制返回行数，支持循环翻页取全量
@@ -24,26 +24,36 @@
 
 ## 安装
 
+### OpenClaw
+
 将本技能目录复制到 OpenClaw 的技能目录（如 `~/.openclaw/workspace/skills/opd-data/`）即可。
 
-## 配置 API Key（任选其一）
+### WorkBuddy
 
-**方式一：命令行交互保存（推荐）**
+将本技能目录复制到 WorkBuddy 的技能目录：
+
+- 用户级（全局可用）：`~/.workbuddy/skills/opd-data/`（Windows 为 `C:\Users\<用户名>\.workbuddy\skills\opd-data\`）
+- 项目级（仅当前项目）：项目根目录下 `.workbuddy/skills/opd-data/`
+
+放置后重启 WorkBuddy 客户端以加载新技能。
+
+## 配置 API Key
+
+API Key 是你访问 OPD 数据的凭证，形如 `opd_xxx`，在 [OPD 平台](https://data.originp.com/) 注册并订阅接口后获取。
+
+**方式一：直接发给 AI 助手（最简单）**
+
+直接把你的 API Key 发给 AI 助手，它会帮你保存到本地，立即生效，以后不用再配。
+
+**方式二：终端自行配置（可选）**
+
+如果你更习惯在终端操作，也可以自行运行：
 
 ```bash
 python scripts/opd_query.py --set-key
 ```
 
-运行后按提示粘贴 Key（从标准输入读取，不进入命令历史），保存到 `~/.opd/api_key`，立即生效，无需重启。也可用 `--set-key opd_你的Key` 带值执行，但 Key 会留在命令历史中，不推荐。
-
-> **安全提示**：不要把 API Key 粘贴到与 AI 助手的对话中发送——对话记录可能被留存或转发。配置请始终在本地终端完成；若 Key 已在对话中暴露，建议在 OPD 平台重置。
-
-**方式二：环境变量**
-
-```bash
-export OPD_API_KEY=opd_你的Key   # Linux/macOS
-[Environment]::SetEnvironmentVariable("OPD_API_KEY", "opd_你的Key", "User")   # Windows
-```
+按提示粘贴 Key 即可，Key 会保存到 `~/.opd/api_key`，立即生效，无需重启。
 
 **验证配置：**
 
@@ -53,6 +63,8 @@ python scripts/opd_query.py co_info --fields sec_code --limit 1
 ```
 
 返回 JSON 中 `code=0` 即成功。
+
+> **关于 Key 安全**：API Key 只能用于查询数据，不能做交易或转账，风险有限。如果不小心把 Key 发到了不该发的地方，去 [OPD 平台](https://data.originp.com/) 重新生成一个就好，旧 Key 会自动失效。
 
 ## 快速开始
 
@@ -89,12 +101,15 @@ python scripts/opd_query.py <接口短名> --fields <字段1,字段2,...> [--过
 
 | 分类 | 参考文档 | 接口数 |
 |---|---|---|
-| 基本信息 | `references/catalog_basic.md` | 6 |
+| 基本信息 | `references/catalog_basic.md` | 30 |
 | 交易信息 | `references/catalog_trading.md` | 11 |
 | 财务信息 | `references/catalog_finance.md` | 16 |
 | 融资分配 | `references/catalog_financing.md` | 8 |
 | 重大事项 | `references/catalog_events.md` | 6 |
 | 股权与治理 | `references/catalog_governance.md` | 15 |
+| 产业链数据 | `references/catalog_industry.md` | 3 |
+| 股票行情 | `references/catalog_stockquote.md` | 1 |
+| 指数行情 | `references/catalog_indexquote.md` | 61 |
 
 每个分类文档包含全部接口的**过滤参数说明**与**返回字段可选值**（标注"默认返回"的字段未指定时也会返回）。
 
@@ -115,11 +130,12 @@ python scripts/opd_query.py <接口短名> --fields <字段1,字段2,...> [--过
 
 ## 安全说明
 
-- API Key 仅保存在 `~/.opd/api_key`（本地单用户受保护），不得写入其他文件
-- Key 不会出现在查询请求的日志/命令历史中（`--set-key` 支持标准输入读取）
-- 请勿把 API Key 粘贴到与 AI 助手的对话中发送；配置一律在本地终端完成
-- 网络请求仅发往 `https://api.originp.com`（`OPD_BASE_URL` 仅接受 `*.originp.com` 的 https 地址，脚本强制校验），Key 只随查询请求发送给 OPD 官方接口
-- 仅使用 Python 标准库，不安装任何依赖、不下载可执行文件
+- API Key 保存在本地 `~/.opd/api_key`，仅你本人可访问，不会上传到任何地方
+- 交给 AI 助手保存后，助手不会在后续对话中重复显示你的 Key
+- API Key 只能用于查询数据，不能做交易或转账，风险有限
+- 如发现 Key 被异常使用，随时可在 [OPD 平台](https://data.originp.com/) 一键重置，旧 Key 即刻失效
+- 网络请求仅发往 OPD 官方接口地址 `https://api.originp.com`，Key 只随查询请求发送给 OPD
+- 脚本仅使用 Python 标准库，无需安装额外依赖，不下载任何可执行文件
 
 ## 维护说明
 

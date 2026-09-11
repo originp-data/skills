@@ -12,7 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""OPD 数据接口通用查询脚本（OpenClaw opd-data 技能）。
+"""OPD 数据接口通用查询脚本（opd-data 技能，支持 OpenClaw 与 WorkBuddy 生态）。
 
 用法:
     python opd_query.py ENDPOINT --fields 字段1,字段2 [--过滤参数 值 ...] [--limit N] [--offset N]
