@@ -58,7 +58,7 @@ python scripts/opd_query.py <接口短名> --fields <字段1,字段2,...> [--过
 python scripts/opd_query.py co_info --fields sec_code,sec_name,chairman --sec_code 000001
 
 # 查询 2024 年全年日行情收盘价（日期 between：两个边界逗号分隔）
-python scripts/opd_query.py daily_quote_hist --fields trade_date,close --sec_code 000001 --trade_date 2024-01-01,2024-12-31 --limit 300
+python scripts/opd_query.py daily_quote_hist --fields trade_date,last_price --sec_code 000001 --trade_date 2024-01-01,2024-12-31 --limit 300
 ```
 
 ## 调用规范
@@ -300,7 +300,7 @@ python scripts/opd_query.py daily_quote_hist --fields trade_date,close --sec_cod
 
 | 需求 | ChartRequest 要点 |
 |---|---|
-| K 线图 | `chartType: "candlestick"`，`xField: trade_date`，`openField: open`，`closeField: close`，`lowField: low`，`highField: high`（数据来自 `daily_quote_hist`，fields 至少取这五个字段） |
+| K 线图 | `chartType: "candlestick"`，`xField: trade_date`，`openField: open_price`，`closeField: last_price`，`lowField: low_price`，`highField: high_price`（数据来自 `daily_quote_hist`，fields 至少取这五个字段） |
 | 折线（趋势） | `goal: "trend"`，`xField` 为日期字段，`series` 为指标字段列表 |
 | 柱状（对比） | `goal: "comparison"`，`categoryField` 为分类字段，`valueField` 为数值字段 |
 | 饼图（构成） | `goal: "composition"`，一个分类字段 + 一个数值字段（如收入构成 `rev_by_product`） |

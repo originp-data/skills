@@ -73,7 +73,7 @@ python scripts/opd_query.py co_info --fields sec_code --limit 1
 python scripts/opd_query.py co_info --fields sec_code,sec_name,chairman --sec_code 000001
 
 # 查询 2024 年全年日行情收盘价
-python scripts/opd_query.py daily_quote_hist --fields trade_date,close --sec_code 000001 --trade_date 2024-01-01,2024-12-31 --limit 300
+python scripts/opd_query.py daily_quote_hist --fields trade_date,last_price --sec_code 000001 --trade_date 2024-01-01,2024-12-31 --limit 300
 ```
 
 ## 调用方法
@@ -126,7 +126,7 @@ python scripts/opd_query.py <接口短名> --fields <字段1,字段2,...> [--过
 
 ## 图表可视化（可选增强）
 
-本技能只负责取数。需要可视化时，可将查询得到的 `data` 数组整理为 `ChartRequest` JSON 交给 `echarts-ai-skill` 渲染（交互式 HTML）。例如 K 线图取 `daily_quote_hist` 的 `trade_date/open/close/low/high` 五个字段。
+本技能只负责取数。需要可视化时，可将查询得到的 `data` 数组整理为 `ChartRequest` JSON 交给 `echarts-ai-skill` 渲染（交互式 HTML）。例如 K 线图取 `daily_quote_hist` 的 `trade_date/open_price/last_price/low_price/high_price` 五个字段。
 
 ## 安全说明
 

@@ -130,9 +130,10 @@ def main():
 
     api_key = resolve_api_key(args)
     if not api_key:
-        sys.exit("错误: 未配置 API Key。请在本地终端运行 `{} --set-key` 按提示粘贴配置"
+        sys.exit("错误: 未配置 API Key。可让 Agent 代存（在对话中把 Key 发给 Agent），"
+                 "或在本地终端运行 `{} --set-key` 按提示粘贴配置"
                  "（标准输入读取，不进入命令历史），或设置环境变量 OPD_API_KEY。"
-                 "请勿将 API Key 粘贴到对话消息中发送。".format(os.path.basename(__file__)))
+                 .format(os.path.basename(__file__)))
 
     if args.check:
         print("API Key 已配置：{}（来源：{}）".format(mask_key(api_key), key_source(args)))
